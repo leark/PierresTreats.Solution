@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+@using PTreats.Models;
+@using System.Security.Claims;
+
+<h3>Types of Treats</h3>
+
+@if (Model.count != 0)
+{
+  <ul>
+    @foreach (Treat treat in Model)
+    {
+      <li>@Html.ActionLink($"{treat.Name}", "Details", new { id = treat.TreatId })</li>
+    }
+  </ul>
+}
+
+<hr />
+<p>@Html.ActionLink("Add a Treat", "Create")</p>
+@if (User.Identity.IsAuthenticated)
+{
+  <p>@Html.ActionLink("Log out", "Index", "Account")</p>
+}
+else
+{
+  <p>@Html.ActionLink("Log in", "Login", "Account")</p>
+}
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
