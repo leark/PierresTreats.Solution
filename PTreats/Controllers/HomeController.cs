@@ -22,5 +22,11 @@ namespace PTreats.Controllers
       ViewBag.PageTitle = "Home";
       return View();
     }
+
+    public ActionResult ShowAll()
+    {
+      var treats = _db.Treats.ToList();
+      return View(treats);
+    }
   }
 }

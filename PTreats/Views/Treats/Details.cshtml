@@ -13,7 +13,7 @@
   <ul>
     @foreach (TreatFlavor tf in Model.JoinEntities)
     {
-      <li>@tf.Flavor.Name</li>
+      <li>@Html.ActionLink($"{tf.Flavor.Name}", "Details", "Flavors", new { id = tf.Flavor.FlavorId })</li>
     }
   </ul>
 </div>

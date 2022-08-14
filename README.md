@@ -2,7 +2,7 @@
 
 #### By _Seung Lee_
 
-#### _A simple website that ._
+#### _A simple website that shows treats and flavors available for said treats._
 
 ## Technologies Used
 
@@ -16,7 +16,7 @@
 
 ## Description
 
-A simple website where a user can .
+A simple website where a user can view treats offered by Pierre's business. Without logging in, a user can view the list of treats or list of flavors. When a user logs in, they can add treats, flavors and edit what each has, and/or delete them.
 
 ## Setup/Installation Requirements
 _Requires console application such as Git Bash, Terminal, or PowerShell_

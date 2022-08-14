@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PTreats.Models
+@model IEnumerable<PTreats.Models.Treat>
+
+<h2>Treats and Flavors</h2>
+<hr />
+@if (Model.Any())
+{
+  <div>
+    <ul>
+      @foreach (Treat treat in Model)
+      {
+        <li>@Html.ActionLink($"{treat.Name}", "Details", "Treats", new { id = treat.TreatId })
+          <ul>
+            @foreach (TreatFlavor tf in treat.JoinEntities)
+            {
+              <li>@Html.ActionLink($"{tf.Flavor.Name}", "Details", "Flavors", new { id = tf.Flavor.FlavorId })</li>
+            }
+          </ul>
+        </li>
+      }
+    </ul>
+  </div>
+}
+<hr />
+<p>@Html.ActionLink("Home", "Index")</p>
