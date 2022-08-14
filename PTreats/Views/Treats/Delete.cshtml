@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PTreats.Models.Treat
+
+<h2>Are you sure you want to delete this?</h2>
+
+<h4>@Html.DisplayFor(model => model.Name)</h4>
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" />
+}
+<hr />
+<p>@Html.ActionLink("Back", "Details", new { id = Model.TreatId })</p>

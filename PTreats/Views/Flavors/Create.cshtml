@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PTreats.Models.Flavor
+
+<h4>Add a New Flavor</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  <input type="submit" value="Add New Flavor" class="btn btn-dark" />
+}
+
+<p>@Html.ActionLink("All Flavors", "Index")</p>

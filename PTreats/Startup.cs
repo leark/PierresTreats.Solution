@@ -26,10 +26,10 @@ namespace PTreats
     {
       services.AddMvc();
       services.AddEntityFrameworkMySql()
-        .AddDbContext<TreatsContext>(options => options
+        .AddDbContext<PTreatsContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
       services.AddIdentity<ApplicationUser, IdentityRole>()
-              .AddEntityFrameworkStores<TreatsContext>()
+              .AddEntityFrameworkStores<PTreatsContext>()
               .AddDefaultTokenProviders();
       services.Configure<IdentityOptions>(options =>
       {

@@ -7,13 +7,12 @@
 ## Technologies Used
 
 * _C#_
-* _MSTest_
+* _Entity Framework_
+* _Identity_
 * _Razor_
 * _HTML_
 * _CSS_
 * _Bootstrap_
-* _Entity Framework_
-* _Identity_
 
 ## Description
 

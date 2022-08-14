@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PTreats.Models.Treat
+
+<h4>Add a New Treat</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  <input type="submit" value="Add New Treat" class="btn btn-dark" />
+}
+
+<p>@Html.ActionLink("All Treats", "Index")</p>

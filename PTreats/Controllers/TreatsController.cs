@@ -14,10 +14,10 @@ namespace PTreats.Controllers
   [Authorize]
   public class TreatsController : Controller
   {
-    private readonly TreatsContext _db;
+    private readonly PTreatsContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public TreatsController(TreatsContext db, UserManager<ApplicationUser> userManager)
+    public TreatsController(PTreatsContext db, UserManager<ApplicationUser> userManager)
     {
       _db = db;
       _userManager = userManager;
@@ -48,12 +48,14 @@ namespace PTreats.Controllers
     public ActionResult Details(int id)
     {
       var treat = _db.Treats.FirstOrDefault(t => t.TreatId == id);
+      ViewBag.Flavors = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(treat);
     }
 
     public ActionResult Edit(int id)
     {
       var treat = _db.Treats.FirstOrDefault(t => t.TreatId == id);
+      ViewBag.Flavors = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(treat);
     }
 
@@ -62,7 +64,7 @@ namespace PTreats.Controllers
     {
       _db.Entry(treat).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Details");
+      return RedirectToAction("Details", new { id = treat.TreatId });
     }
 
     public ActionResult Delete(int id)
@@ -71,13 +73,31 @@ namespace PTreats.Controllers
       return View(treat);
     }
 
-    [HttpPost]
+    [HttpPost, ActionName("Delete")]
     public ActionResult Deleted(int id)
     {
       var treat = _db.Treats.FirstOrDefault(t => t.TreatId == id);
       _db.Treats.Remove(treat);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    public ActionResult AddFlavor(int treatId, int flavorId)
+    {
+      if (_db.TreatFlavors.FirstOrDefault(tf => tf.TreatId == treatId && tf.FlavorId == flavorId) == null)
+      {
+        _db.TreatFlavors.Add(new TreatFlavor() { TreatId = treatId, FlavorId = flavorId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Edit", new { id = treatId });
+    }
+
+    public ActionResult DeleteFlavor(int treatId, int treatflavorId)
+    {
+      var treatflavor = _db.TreatFlavors.FirstOrDefault(tf => tf.TreatFlavorId == treatflavorId);
+      _db.TreatFlavors.Remove(treatflavor);
+      _db.SaveChanges();
+      return RedirectToAction("Edit", new { id = treatId });
     }
   }
 }

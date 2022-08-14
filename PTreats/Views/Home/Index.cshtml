@@ -8,6 +8,8 @@
 <hr />
 
 <div>
+  <p>@Html.ActionLink("Treats", "Index", "Treats")</p>
+  <p>@Html.ActionLink("Flavors", "Index", "Flavors")</p>
   @if (User.Identity.IsAuthenticated)
   {
     <p>@Html.ActionLink("Log out", "Index", "Account")</p>

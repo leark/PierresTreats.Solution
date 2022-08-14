@@ -1,0 +1,52 @@
+@{
+  Layout = "_Layout";
+}
+@using PTreats.Models
+@model PTreats.Models.Treat
+
+<h2>Edit</h2>
+
+<h4>Edit this Treat: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId)
+  <div>
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+  </div>
+
+  <input type="submit" value="Save" />
+}
+<hr />
+
+<h3>Available flavors for @Model.Name</h3>
+<div class="mb-3">
+  <ul>
+    @foreach (TreatFlavor tf in Model.JoinEntities)
+    {
+      <li>
+        @tf.Flavor.Name
+        @using (Html.BeginForm("DeleteFlavor", "Treats", FormMethod.Post, new { @class = "form-inline" }))
+        {
+          @Html.Hidden("TreatId", Model.TreatId)
+          @Html.Hidden("TreatFlavorId", tf.TreatFlavorId)
+          <input type="submit" value="Delete" class="btn btn-dark" />
+        }
+      </li>
+    }
+  </ul>
+</div>
+
+@using (Html.BeginForm("AddFlavor", "Treats"))
+{
+  @Html.Hidden("TreatId", Model.TreatId)
+  <div class="mb-3">
+    @Html.DropDownList("FlavorId", ViewBag.Flavors, null, new { required = "required" })
+  </div>
+
+  <input type="submit" value="Add New Flavor" />
+}
+<hr />
+
+<p>@Html.ActionLink("Back", "Details", new { id = Model.TreatId })</p>

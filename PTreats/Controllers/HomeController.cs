@@ -11,9 +11,9 @@ namespace PTreats.Controllers
 {
   public class HomeController : Controller
   {
-    private readonly TreatsContext _db;
+    private readonly PTreatsContext _db;
 
-    public HomeController(TreatsContext db)
+    public HomeController(PTreatsContext db)
     {
       _db = db;
     }
